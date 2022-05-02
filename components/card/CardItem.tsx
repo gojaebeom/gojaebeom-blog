@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function CardItem({ post }: any) {
     return (
-        <div id="CARD" className="p-2" key={post.slug}>
+        <div id="CARD" className="col-span-1 p-2" key={post.slug}>
             <div
                 id="CARD_THUMBNAIL"
                 className="relative w-full h-[300px] overflow-hidden rounded-lg"

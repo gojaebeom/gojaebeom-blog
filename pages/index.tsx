@@ -1,44 +1,38 @@
-import useHome from "./index.service";
-
-import path from 'path'
-import fs from 'fs'
-import matter from 'gray-matter'
-import { CardList, Footer, Header, TagList } from "components";
+import path from "path";
+import fs from "fs";
+import matter from "gray-matter";
+import { CardList, Footer, Header, Scaffold, TagList } from "components";
 
 export default function HomePage({ posts }: any) {
-  useHome();
   return (
-    <div className="w-full h-full overflow-hidden">
+    <Scaffold>
       <Header />
       <TagList />
       <CardList posts={posts} />
       <Footer />
-    </div>
+    </Scaffold>
   );
 }
 
 export async function getStaticProps() {
-  // Get files from the posts dir
-  const files = fs.readdirSync(path.join('drafts'))
-  // Get slug and frontmatter from posts
+  const files = fs.readdirSync(path.join("drafts"));
+
   const posts = files.map((filename) => {
-    // Create slug
-    const slug = filename.replace('.md', '')
-    // Get frontmatter
+    const slug = filename.replace(".md", "");
     const markdownWithMeta = fs.readFileSync(
-      path.join('drafts', filename),
-      'utf-8'
-    )
-    const { data } = matter(markdownWithMeta)
+      path.join("drafts", filename),
+      "utf-8"
+    );
+    const { data } = matter(markdownWithMeta);
     return {
       slug,
       data,
-    }
-  })
+    };
+  });
 
   return {
     props: {
       posts: posts,
     },
-  }
+  };
 }

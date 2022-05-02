@@ -2,7 +2,7 @@ export default function Footer() {
     return (
         <div
             id="FOOTER"
-            className="bg-gradient-to-tr from-[#16a085] to-[#f4d03f] mt-20"
+            className="bg-gradient-to-tr from-[#16a085] to-[#f4d03f] mt-20 md:w-full"
         >
             <div className="relative col-span-3 ">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

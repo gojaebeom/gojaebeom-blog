@@ -1,19 +1,19 @@
-import { Footer } from "components";
+import { Footer, Scaffold } from "components";
 import Image from "next/image";
 import Link from "next/link";
 
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { marked } from 'marked'
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import * as marked from "marked";
 
 export default function PostDetailPage({ slug, data, content }: any) {
-  console.debug(slug)
-  console.debug(data)
-  console.debug(content)
   return (
-    <div>
-      <div id="DETAIL_THUMBNAIL" className="relative w-full h-[300px] z-[1]">
+    <Scaffold>
+      <div
+        id="DETAIL_THUMBNAIL"
+        className="relative w-full md:w-[1240px] h-[300px] z-[1]"
+      >
         <div
           id="DETAIL_BACK_BTN"
           className="absolute z-10 flex items-center justify-center w-10 h-10 text-black rounded-full top-6 left-4 bg-white/30"
@@ -31,38 +31,45 @@ export default function PostDetailPage({ slug, data, content }: any) {
         ></div>
       </div>
       <div id="DETAIL_BODY" className="px-4 pt-4">
-        <h1 id="DETAIL_TITLE" className="text-3xl font-extrabold text-black">
-          자바스크립트 활용하기
+        <h1
+          id="DETAIL_TITLE"
+          className="mb-10 text-3xl font-extrabold text-black"
+        >
+          {data.title}
         </h1>
-        <div id="DETAIL_CONTENT" className="mt-4" dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+        <div
+          id="DETAIL_CONTENT"
+          className="prose prose-slate"
+          dangerouslySetInnerHTML={{ __html: marked(content) }}
+        ></div>
       </div>
       <Footer />
-    </div>
+    </Scaffold>
   );
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('drafts'))
+  const files = fs.readdirSync(path.join("drafts"));
 
   const paths = files.map((filename) => ({
     params: {
-      slug: filename.replace('.md', ''),
+      slug: filename.replace(".md", ""),
     },
-  }))
+  }));
 
   return {
     paths,
     fallback: false,
-  }
+  };
 }
 
 export async function getStaticProps({ params: { slug } }: any) {
   const markdownWithMeta = fs.readFileSync(
-    path.join('drafts', slug + '.md'),
-    'utf-8'
-  )
+    path.join("drafts", slug + ".md"),
+    "utf-8"
+  );
 
-  const { data, content } = matter(markdownWithMeta)
+  const { data, content } = matter(markdownWithMeta);
 
   return {
     props: {
@@ -70,5 +77,5 @@ export async function getStaticProps({ params: { slug } }: any) {
       data,
       content,
     },
-  }
+  };
 }
