@@ -5,9 +5,11 @@ import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import * as marked from "marked";
+import React from "react";
+import _marked from "marked";
 
 export default function PostDetailPage({ slug, data, content }: any) {
+  const marked: any = _marked;
   return (
     <Scaffold>
       <div
