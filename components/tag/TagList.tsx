@@ -2,7 +2,7 @@ export default function TagList() {
     return (
         <div
             id="TAGLIST"
-            className="flex items-center justify-start p-2 overflow-x-auto text-sm font-bold hide-scroll"
+            className="flex items-center justify-start w-full p-2 overflow-x-auto text-sm font-bold hide-scroll md:w-[1240px]"
         >
             <div className="px-4 py-2 mx-1 bg-gray-100 whitespace-nowrap rounded-3xl">
                 자바스크립트
