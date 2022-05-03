@@ -1,15 +1,23 @@
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
-import { CardList, Footer, Header, Scaffold, TagList } from "components";
+import {
+  BookList,
+  CardList,
+  Footer,
+  Header,
+  Scaffold,
+  TagList,
+} from "components";
 
 export default function HomePage({ posts }: any) {
   return (
     <Scaffold>
       <Header />
       <TagList />
-      <CardList posts={posts} />
-      <Footer />
+      <BookList />
+      {/* <CardList posts={posts} /> */}
+      {/* <Footer /> */}
     </Scaffold>
   );
 }
