@@ -33,11 +33,18 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    const worldTilemap = this.make.tilemap({ key: "world" });
-    worldTilemap.addTilesetImage("Water", "water");
-    worldTilemap.addTilesetImage("Grass", "grass");
-    worldTilemap.createLayer(0, "Water").setDepth(0).scale = 3;
-    worldTilemap.createLayer(1, "Grass").setDepth(1).scale = 3;
+    const map = this.make.tilemap({ key: "world" });
+
+    map.addTilesetImage("Water", "water");
+    map.addTilesetImage("Grass", "grass");
+    const layer1 = map.createLayer(0, "Water");
+    layer1.setDepth(0).scale = 3;
+
+    const layer2 = map.createLayer(1, "Grass");
+    layer2.setDepth(1).scale = 3;
+
+    const debugGraphics = this.add.graphics().setAlpha(0.75);
+    layer2.renderDebug(debugGraphics);
 
     this.player = this.physics.add.sprite(100, 100, "player");
     this.player.setOrigin(0, 0);
@@ -46,6 +53,8 @@ export class GameScene extends Phaser.Scene {
     this.player.setDepth(2).scale = 3;
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
+
+    // this.physics.add.collider(this.player, layer1);
 
     this.anims.create({
       key: "down",
@@ -136,10 +145,11 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
   },
   type: Phaser.AUTO,
   scene: [GameScene],
-  // scale: {
-  //   autoCenter: Phaser.Scale.CENTER_BOTH,
-  //   mode: Phaser.Scale.FIT,
-  // },
+  scale: {
+    // autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.FIT,
+    zoom: 4,
+  },
   parent: "phaser",
   backgroundColor: "white",
   physics: {
