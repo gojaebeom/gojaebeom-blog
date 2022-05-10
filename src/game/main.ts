@@ -24,8 +24,8 @@ export class GameScene extends Phaser.Scene {
   preload(): void {
     this.load.image("water", "assets/world/Water.png");
     this.load.image("grass", "assets/world/Grass.png");
-    this.load.image("Dirt", "assets/world/Dirt.png");
-    this.load.image("object1", "assets/world/Dirt.png");
+    this.load.image("dirt", "assets/world/Dirt.png");
+    this.load.image("object", "assets/world/object1.png");
     this.load.tilemapTiledJSON("world", "assets/world/world2.json");
 
     this.load.spritesheet("player", "assets/characters/banny_default.png", {
@@ -39,7 +39,8 @@ export class GameScene extends Phaser.Scene {
 
     map.addTilesetImage("Water", "water");
     map.addTilesetImage("Grass", "grass");
-    const layer1 = map.createLayer(0, "Water");
+    map.addTilesetImage("Dirt", "dirt");
+    const layer1 = map.createLayer(0, "Water", 0, 0);
     layer1.setDepth(1).scale = 3;
 
     const layer2 = map.createLayer(1, "Grass", 0, 0);
