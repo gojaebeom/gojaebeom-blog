@@ -24,7 +24,9 @@ export class GameScene extends Phaser.Scene {
   preload(): void {
     this.load.image("water", "assets/world/Water.png");
     this.load.image("grass", "assets/world/Grass.png");
-    this.load.tilemapTiledJSON("world", "assets/world/world.json");
+    this.load.image("Dirt", "assets/world/Dirt.png");
+    this.load.image("object1", "assets/world/Dirt.png");
+    this.load.tilemapTiledJSON("world", "assets/world/world2.json");
 
     this.load.spritesheet("player", "assets/characters/banny_default.png", {
       frameWidth: 48,
@@ -38,23 +40,37 @@ export class GameScene extends Phaser.Scene {
     map.addTilesetImage("Water", "water");
     map.addTilesetImage("Grass", "grass");
     const layer1 = map.createLayer(0, "Water");
-    layer1.setDepth(0).scale = 3;
+    layer1.setDepth(1).scale = 3;
 
-    const layer2 = map.createLayer(1, "Grass");
-    layer2.setDepth(1).scale = 3;
+    const layer2 = map.createLayer(1, "Grass", 0, 0);
+    layer2.setDepth(2);
+    layer2.scale = 3;
 
+    const layer3 = map.createLayer(2, "Water", 0, 0);
+    layer3.setDepth(0);
+    layer3.scale = 3;
+
+    layer3.setCollisionBetween(0, 2);
     const debugGraphics = this.add.graphics().setAlpha(0.75);
-    layer2.renderDebug(debugGraphics);
+    layer3.renderDebug(debugGraphics);
 
     this.player = this.physics.add.sprite(100, 100, "player");
     this.player.setOrigin(0, 0);
     this.player.setDisplaySize(48, 48);
     this.player.setBodySize(16, 16);
-    this.player.setDepth(2).scale = 3;
-    this.cameras.main.startFollow(this.player);
-    this.cameras.main.roundPixels = true;
+    this.player.setDepth(3);
+    this.player.scale = 3;
 
-    // this.physics.add.collider(this.player, layer1);
+    this.cameras.main.setBounds(
+      0,
+      1,
+      map.widthInPixels * 3,
+      map.heightInPixels * 3
+    );
+    this.cameras.main.startFollow(this.player);
+    // this.cameras.main.roundPixels = true;
+
+    this.physics.add.collider(this.player, layer3);
 
     this.anims.create({
       key: "down",
@@ -145,11 +161,13 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
   },
   type: Phaser.AUTO,
   scene: [GameScene],
-  scale: {
-    // autoCenter: Phaser.Scale.CENTER_BOTH,
-    mode: Phaser.Scale.FIT,
-    zoom: 4,
-  },
+  width: window.innerWidth,
+  height: window.innerHeight,
+  // scale: {
+  //   // autoCenter: Phaser.Scale.CENTER_BOTH,
+  //   // mode: Phaser.Scale.FIT,
+  //   // zoom: 4,
+  // },
   parent: "phaser",
   backgroundColor: "white",
   physics: {
