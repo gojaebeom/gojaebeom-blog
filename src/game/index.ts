@@ -1,15 +1,13 @@
-import * as Phaser from "phaser";
-import Preloader from "game/scenes/Preloader";
 import Game from "./scenes/Game";
 
 export const gameConfig: Phaser.Types.Core.GameConfig = {
-  title: "Sample",
+  title: "GJB WORLD",
   render: {
     antialias: false,
   },
   type: Phaser.AUTO,
   // pixelArt: true,
-  scene: [Preloader, Game],
+  scene: [Game],
   scale: {
     mode: Phaser.Scale.ScaleModes.RESIZE,
     width: window.innerWidth,
@@ -22,7 +20,10 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
     default: "arcade",
     arcade: {
       gravity: { y: 0 },
-      debug: false,
+      debug: true,
     },
+  },
+  audio: {
+    disableWebAudio: true,
   },
 };

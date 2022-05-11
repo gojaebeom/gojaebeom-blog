@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Phaser from "phaser";
 import { gameConfig } from "game";
+import Phaser from "phaser";
 
 function App() {
   const [toggle, setToggle] = useState<boolean>();
 
   useEffect(() => {
     if (!document.querySelector("canvas")) {
-      const game = new Phaser.Game(gameConfig);
+      new Phaser.Game(gameConfig);
     }
   }, []);
 
@@ -19,14 +19,14 @@ function App() {
         </div>
       </header> */}
       <div id="phaser"></div>
-      <button
+      <div
         onClick={() => setToggle(!toggle)}
         className={`fixed flex items-center justify-center  transition-all bg-white shadow-xl bottom-10 right-10
         ${toggle ? "w-[300px] h-[500px] rounded-lg" : "w-20 h-20 rounded-full"}
         `}
       >
         블로그
-      </button>
+      </div>
     </div>
   );
 }
