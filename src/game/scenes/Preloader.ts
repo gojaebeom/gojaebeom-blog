@@ -16,13 +16,11 @@ class Preloader extends Phaser.Scene {
     this.load.image("house", "assets/world/WoodenHouse.png");
     this.load.tilemapTiledJSON("world", "assets/world/world2.json");
 
-    // 플레이어
     this.load.spritesheet("player", "assets/characters/banny_default.png", {
       frameWidth: 48,
       frameHeight: 48,
     });
 
-    // 젖소
     this.load.spritesheet("cow", "assets/characters/cow.png", {
       frameWidth: 32,
       frameHeight: 32,
