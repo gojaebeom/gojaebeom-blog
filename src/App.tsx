@@ -14,19 +14,6 @@ function App() {
   useEffect(() => {
     if (!document.querySelector("canvas")) {
       new Phaser.Game(gameConfig);
-
-      const javaRef = ref(storage, "java");
-      listAll(javaRef).then((res) => {
-        console.debug(res);
-        res.items.forEach((itemRef) => {
-          // All the items under listRef.
-          console.debug(itemRef.fullPath);
-          getDownloadURL(ref(storage, itemRef.fullPath)).then((url) => {
-            console.debug(url);
-            dispatch(setFiles(url));
-          });
-        });
-      });
     }
   }, []);
 
@@ -34,7 +21,7 @@ function App() {
     <div className="App font-ng">
       <div id="phaser" className="fixed top-0 left-0 w-full h-full"></div>
       <CategoryBox />
-      <Modal />
+      {/* <Modal /> */}
     </div>
   );
 }
