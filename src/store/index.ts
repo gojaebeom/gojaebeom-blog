@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoryBoxToggle from "./modules/toggle";
-import markdown from "./modules/markdown";
+import document from "./modules/document";
+import ui from "./modules/ui";
 
 const store = configureStore({
   reducer: {
-    categoryBoxToggle: categoryBoxToggle,
-    markdown: markdown,
+    document: document,
+    ui: ui,
   },
 });
 

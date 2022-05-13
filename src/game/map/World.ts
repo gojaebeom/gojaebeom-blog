@@ -6,16 +6,16 @@ export default class World {
   constructor(private scene: Phaser.Scene) {}
 
   preload():void {
-    // Map Assets
-    this.scene.load.image("water", "assets/sprout-land/tilesets/Water.png");
-    this.scene.load.image("grass", "assets/sprout-land/tilesets/Grass.png");
-    this.scene.load.image("dirt", "assets/sprout-land/tilesets/Tilled Dirt.png");
-    this.scene.load.image("home", "assets/sprout-land/tilesets/Building parts/home.png");
-    this.scene.load.image("path", "assets/sprout-land/tilesets/Building parts/Paths.png");
-    this.scene.load.image("mfs", "assets/sprout-land/objects/Mushrooms, Flowers, Stones.png");
-    this.scene.load.image("tree", "assets/sprout-land/objects/Trees, stumps and bushes.png");
-    this.scene.load.image("water-obj", "assets/sprout-land/objects/Water Objects.png");
-    this.scene.load.tilemapTiledJSON("world", "assets/sprout-land/world.json");
+    // Map /Assets
+    this.scene.load.image("water", "/assets/sprout-land/tilesets/Water.png");
+    this.scene.load.image("grass", "/assets/sprout-land/tilesets/Grass.png");
+    this.scene.load.image("dirt", "/assets/sprout-land/tilesets/Tilled Dirt.png");
+    this.scene.load.image("home", "/assets/sprout-land/tilesets/Building parts/home.png");
+    this.scene.load.image("path", "/assets/sprout-land/tilesets/Building parts/Paths.png");
+    this.scene.load.image("mfs", "/assets/sprout-land/objects/Mushrooms, Flowers, Stones.png");
+    this.scene.load.image("tree", "/assets/sprout-land/objects/Trees, stumps and bushes.png");
+    this.scene.load.image("water-obj", "/assets/sprout-land/objects/Water Objects.png");
+    this.scene.load.tilemapTiledJSON("world", "/assets/sprout-land/world.json");
   }
 
   create(): void {

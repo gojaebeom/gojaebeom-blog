@@ -1,19 +1,18 @@
 import * as functions from "firebase-functions";
-import { Express } from "express";
 import * as express from "express";
-import { readdir } from "fs";
+import { Express } from "express";
+import { DocumentRouter } from "./routers";
+import * as cors from "cors";
 
 const app: Express = express();
 
-app.get("/", async (req, res) => {
-  console.debug("helloWorld!");
-  readdir("drafts/java", (err, files) => {
-    if (err) {
-      console.debug(err);
-    }
-    console.debug(files);
-    res.send("hello world");
-  });
-});
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://gojaebeom.github.io"],
+    credentials: true,
+  })
+);
 
-exports.helloWorld = functions.region("asia-northeast3").https.onRequest(app);
+app.use("/documents", DocumentRouter);
+
+exports.api = functions.region("asia-northeast3").https.onRequest(app);

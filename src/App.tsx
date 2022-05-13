@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
-import { gameConfig } from "game";
-import Phaser from "phaser";
-import { CategoryBox, Modal } from "components";
-import { getDownloadURL, listAll, ref } from "firebase/storage";
-import { storage } from "utils/firebaseInit";
-import { useDispatch } from "react-redux";
-import { setFiles } from "store/modules/markdown";
+import { Link, Route, Routes } from "react-router-dom";
+import { DocumentDetail, DocumentList, Intro } from "pages";
+import useApp from "App.service";
 
 function App() {
-  const [toggle, setToggle] = useState<boolean>();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!document.querySelector("canvas")) {
-      new Phaser.Game(gameConfig);
-    }
-  }, []);
-
+  useApp();
   return (
     <div className="App font-ng">
       <div id="phaser" className="fixed top-0 left-0 w-full h-full"></div>
-      <CategoryBox />
-      {/* <Modal /> */}
+      <Link
+        to="/intro"
+        className="fixed flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-2xl right-10 bottom-10"
+      >
+        블로그
+      </Link>
+
+      <Routes>
+        <Route path="/intro" element={<Intro />}></Route>
+        <Route path="/documents/:category" element={<DocumentList />} />
+        <Route path="/documents/:category/:slug" element={<DocumentDetail />} />
+      </Routes>
     </div>
   );
 }

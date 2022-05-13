@@ -1,1 +1,2 @@
-export type { default as Toggle } from "./Toggle";
+export type { Document, DocumentState } from "./Document";
+export type { default as UiState } from "./Ui";

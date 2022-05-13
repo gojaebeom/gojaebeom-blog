@@ -10,7 +10,7 @@ export default class Player {
   preload(): void {
     this.scene.load.spritesheet(
       "player",
-      "assets/sprout-land/characters/Premium Charakter Spritesheet.png",
+      "/assets/sprout-land/characters/Premium Charakter Spritesheet.png",
       {
         frameWidth: 48,
         frameHeight: 48,
